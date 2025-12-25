@@ -37,7 +37,7 @@ add_action( 'after_setup_theme', 'modern_broadsheet_setup' );
  */
 function modern_broadsheet_scripts() {
     wp_enqueue_style( 'modern-broadsheet-style', get_stylesheet_uri() );
-    wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&family=UnifrakturMaguntia&display=swap', array(), null );
+    wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&family=UnifrakturMaguntia&family=Bokor&display=swap', array(), null );
 
     // Enqueue Header Scroll Script
     wp_enqueue_script( 'modern-broadsheet-header', get_template_directory_uri() . '/js/header-scroll.js', array(), null, true );

@@ -1,17 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
     const headerWrapper = document.querySelector('.header-top-wrapper');
-    const siteBranding = document.querySelector('.site-branding');
+    const stickyHeader = document.querySelector('.sticky-header');
+    const mainBranding = document.querySelector('.site-header > .container > .site-branding');
     
-    if (headerWrapper && siteBranding) {
+    if (mainBranding) {
         window.addEventListener('scroll', function() {
-            // Deteksi posisi bawah logo utama terhadap viewport
-            const rect = siteBranding.getBoundingClientRect();
+            const rect = mainBranding.getBoundingClientRect();
             
-            // Jika bagian bawah logo utama sudah melewati batas atas layar (0)
-            if (rect.bottom < 0) {
-                headerWrapper.classList.add('is-scrolled');
-            } else {
-                headerWrapper.classList.remove('is-scrolled');
+            // Toggle .is-scrolled for header-center-sticky
+            if (headerWrapper) {
+                if (rect.bottom < 0) {
+                    headerWrapper.classList.add('is-scrolled');
+                } else {
+                    headerWrapper.classList.remove('is-scrolled');
+                }
+            }
+
+            // Toggle .is-sticky for the sliding sticky-header
+            if (stickyHeader) {
+                if (rect.bottom < 0) {
+                    stickyHeader.classList.add('is-sticky');
+                } else {
+                    stickyHeader.classList.remove('is-sticky');
+                }
             }
         });
     }

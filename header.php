@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bokor&display=swap" rel="stylesheet">
     <?php wp_head(); ?>
 </head>
 
@@ -18,7 +17,6 @@
             <div class="header-top">
                 <div class="header-left">
                     <button class="menu-toggle">&#9776;</button>
-                    <button class="search-toggle">&#128269;</button>
                 </div>
 
                 <div class="header-center-sticky">
@@ -50,20 +48,6 @@
             <p class="site-tagline"><?php bloginfo( 'description' ); ?></p>
         </div>
 
-        <!-- Sticky Header (Visible on scroll) -->
-        <div class="sticky-header">
-            <div class="container sticky-container">
-                <div class="sticky-left">
-                    <button class="menu-toggle-sticky">&#9776;</button>
-                    <div class="sticky-logo">The Washington Post</div>
-                    <div class="sticky-tagline">Democracy Dies in Darkness</div>
-                </div>
-                <div class="sticky-right">
-                    <a href="#" class="btn-subscribe-small">Save and subscribe</a>
-                    <a href="#" class="btn-signin-small">Sign in</a>
-                </div>
-            </div>
-        </div>
 
         <nav id="site-navigation" class="main-navigation">
                 <ul id="primary-menu" class="menu">
