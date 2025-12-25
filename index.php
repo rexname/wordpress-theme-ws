@@ -72,7 +72,7 @@
     <div class="top-stories-most-read-container">
         <div class="more-top-stories-section">
             <div class="section-header-wp-left">
-                <h2>More Top Stories</h2>
+                <p class="section-title">More Top Stories</p>
             </div>
             <div class="top-stories-grid">
                 <!-- Large Story with Image -->

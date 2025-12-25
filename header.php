@@ -3,6 +3,11 @@
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php if ( is_single() || is_page() ) : ?>
+        <meta name="description" content="<?php echo wp_strip_all_tags( get_the_excerpt() ); ?>">
+    <?php else : ?>
+        <meta name="description" content="<?php bloginfo( 'description' ); ?>">
+    <?php endif; ?>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <?php wp_head(); ?>
@@ -61,11 +66,11 @@
 
                 <div class="header-center-sticky">
                     <div class="site-branding sticky-branding">
-                        <h1 class="masthead-title">
+                        <p class="masthead-title">
                             <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
                                 <?php bloginfo( 'name' ); ?>
                             </a>
-                        </h1>
+                        </p>
                         <p class="site-tagline"><?php bloginfo( 'description' ); ?></p>
                     </div>
                 </div>
