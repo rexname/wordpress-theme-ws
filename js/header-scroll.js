@@ -26,4 +26,34 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Sidebar Menu Logic
+    const sideMenu = document.getElementById('side-menu');
+    const overlay = document.querySelector('.side-menu-overlay');
+    const menuToggles = document.querySelectorAll('.menu-toggle, .menu-toggle-sticky');
+    const menuClose = document.querySelector('.menu-close');
+
+    function openMenu() {
+        sideMenu.classList.add('active');
+        overlay.classList.add('active');
+        document.body.classList.add('side-menu-active');
+    }
+
+    function closeMenu() {
+        sideMenu.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.classList.remove('side-menu-active');
+    }
+
+    menuToggles.forEach(toggle => {
+        toggle.addEventListener('click', openMenu);
+    });
+
+    if (menuClose) {
+        menuClose.addEventListener('click', closeMenu);
+    }
+
+    if (overlay) {
+        overlay.addEventListener('click', closeMenu);
+    }
 });
