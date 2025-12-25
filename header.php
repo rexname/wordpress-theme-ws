@@ -3,6 +3,9 @@
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bokor&display=swap" rel="stylesheet">
     <?php wp_head(); ?>
 </head>
 
@@ -63,13 +66,23 @@
         </div>
 
         <nav id="site-navigation" class="main-navigation">
-            <?php
-            wp_nav_menu( array(
-                'theme_location' => 'menu-1',
-                'menu_id'        => 'primary-menu',
-                'container'      => false,
-            ) );
-            ?>
-        </nav>
+                <ul id="primary-menu" class="menu">
+                    <?php
+                    $categories = get_categories( array(
+                        'orderby' => 'name',
+                        'order'   => 'ASC',
+                        'hide_empty' => 1 // Tampilkan semua meskipun kosong
+                    ) );
+
+                    foreach ( $categories as $category ) {
+                        printf(
+                            '<li><a href="%1$s">%2$s</a></li>',
+                            esc_url( get_category_link( $category->term_id ) ),
+                            esc_html( $category->name )
+                        );
+                    }
+                    ?>
+                </ul>
+            </nav>
     </div>
 </header>

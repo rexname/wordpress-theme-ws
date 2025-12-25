@@ -2,38 +2,61 @@
 
 <main id="primary" class="site-main container">
     <!-- Hero Section (3 Columns) -->
-    <div class="broadsheet-grid" style="border-bottom: 1px solid #333; padding-bottom: 40px;">
-        <!-- Column 1: Lead Headline -->
-        <div class="left-column" style="border-right: 1px solid #333; padding-right: 20px;">
-            <?php
-            $hero_query = new WP_Query( array('posts_per_page' => 1) );
-            if ( $hero_query->have_posts() ) : while ( $hero_query->have_posts() ) : $hero_query->the_post(); ?>
-                <article class="hero-text-only">
-                    <h1 style="font-size: 38px; line-height: 1; margin-bottom: 15px;"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
-                    <p style="font-size: 16px; color: #bbb;"><?php echo wp_trim_words(get_the_excerpt(), 25); ?></p>
-                    <div class="byline" style="margin-top: 10px;">By <?php the_author(); ?></div>
-                </article>
-            <?php endwhile; wp_reset_postdata(); endif; ?>
+    <div class="broadsheet-grid">
+        <!-- Main Content Area (Left + Center) -->
+        <div class="main-content-column" style="grid-column: span 2; display: flex; flex-direction: column; gap: 40px;">
+            <div class="hero-top-layout" style="display: grid; grid-template-columns: 320px 1fr; gap: 30px;">
+                <!-- Column 1: Lead Headline -->
+                <div class="left-column" style="border-right: 1px solid #333; padding-right: 20px;">
+                    <?php
+                    $hero_query = new WP_Query( array('posts_per_page' => 1) );
+                    if ( $hero_query->have_posts() ) : while ( $hero_query->have_posts() ) : $hero_query->the_post(); ?>
+                        <article class="hero-text-only">
+                            <h1 style="font-size: 38px; line-height: 1; margin-bottom: 15px;"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
+                            <p style="font-size: 16px; color: #bbb;"><?php echo wp_trim_words(get_the_excerpt(), 25); ?></p>
+                            <div class="byline" style="margin-top: 10px;">By <?php the_author(); ?></div>
+                        </article>
+                    <?php endwhile; wp_reset_postdata(); endif; ?>
+                </div>
+
+                <!-- Column 2: Large Hero Image -->
+                <div class="center-column">
+                    <?php
+                    if ( $hero_query->have_posts() ) : while ( $hero_query->have_posts() ) : $hero_query->the_post(); ?>
+                        <?php if ( has_post_thumbnail() ) : ?>
+                            <div class="hero-image">
+                                <?php the_post_thumbnail( 'large', array('style' => 'width:100%; height:auto;') ); ?>
+                                <div class="thumbnail-caption" style="text-align: right;">(<?php the_author(); ?>/The Post)</div>
+                            </div>
+                        <?php endif; ?>
+                    <?php endwhile; wp_reset_postdata(); endif; ?>
+                </div>
+            </div>
+
+            <!-- Secondary Stacked Section (Now inside main content flow) -->
+            <div class="secondary-stack">
+                <?php
+                $secondary_query = new WP_Query( array('posts_per_page' => 5, 'offset' => 5) );
+                if ( $secondary_query->have_posts() ) : while ( $secondary_query->have_posts() ) : $secondary_query->the_post(); ?>
+                    <article class="stacked-article">
+                        <div class="content">
+                            <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                            <p><?php echo wp_trim_words(get_the_excerpt(), 20); ?></p>
+                            <div class="byline">By <?php the_author(); ?></div>
+                        </div>
+                        <div class="image">
+                            <?php if ( has_post_thumbnail() ) the_post_thumbnail( 'medium_large' ); ?>
+                        </div>
+                    </article>
+                <?php endwhile; wp_reset_postdata(); endif; ?>
+            </div>
         </div>
 
-        <!-- Column 2: Large Hero Image -->
-        <div class="center-column">
-            <?php
-            if ( $hero_query->have_posts() ) : while ( $hero_query->have_posts() ) : $hero_query->the_post(); ?>
-                <?php if ( has_post_thumbnail() ) : ?>
-                    <div class="hero-image">
-                        <?php the_post_thumbnail( 'large', array('style' => 'width:100%; height:auto;') ); ?>
-                        <div class="thumbnail-caption" style="text-align: right;">(<?php the_author(); ?>/The Post)</div>
-                    </div>
-                <?php endif; ?>
-            <?php endwhile; wp_reset_postdata(); endif; ?>
-        </div>
-
-        <!-- Column 3: Opinions Sidebar -->
+        <!-- Column 3: Opinions Sidebar (Now goes all the way down) -->
         <div class="right-column" style="border-left: 1px solid #333; padding-left: 20px;">
             <span class="column-title">Opinions</span>
             <?php
-            $opinion_query = new WP_Query( array('posts_per_page' => 4, 'offset' => 1) );
+            $opinion_query = new WP_Query( array('posts_per_page' => 10, 'offset' => 1) );
             if ( $opinion_query->have_posts() ) : while ( $opinion_query->have_posts() ) : $opinion_query->the_post(); ?>
                 <div class="opinion-item" style="margin-bottom: 15px; border-bottom: 1px solid #222; padding-bottom: 10px;">
                     <div class="opinion-content">
@@ -43,24 +66,6 @@
                 </div>
             <?php endwhile; wp_reset_postdata(); endif; ?>
         </div>
-    </div>
-
-    <!-- Secondary Stacked Section -->
-    <div class="secondary-stack">
-        <?php
-        $secondary_query = new WP_Query( array('posts_per_page' => 5, 'offset' => 5) );
-        if ( $secondary_query->have_posts() ) : while ( $secondary_query->have_posts() ) : $secondary_query->the_post(); ?>
-            <article class="stacked-article">
-                <div class="content">
-                    <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                    <p><?php echo wp_trim_words(get_the_excerpt(), 20); ?></p>
-                    <div class="byline">By <?php the_author(); ?></div>
-                </div>
-                <div class="image">
-                    <?php if ( has_post_thumbnail() ) the_post_thumbnail( 'medium_large' ); ?>
-                </div>
-            </article>
-        <?php endwhile; wp_reset_postdata(); endif; ?>
     </div>
 
     <!-- More Top Stories (1-2-1 Layout) -->

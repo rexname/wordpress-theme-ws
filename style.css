@@ -41,27 +41,17 @@ a:hover {
     text-decoration: underline;
 }
 
-.header-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.header-left, .header-right {
-    display: flex;
-    align-items: center;
-}
-
 .btn-subscribe {
     background: #0056b3;
     color: #fff;
-    padding: 8px 16px;
+    padding: 0 16px;
     border-radius: 20px;
     font-size: 13px;
     font-weight: 700;
-    margin-right: 15px;
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    height: 32px;
 }
 
 .btn-signin {
@@ -69,6 +59,9 @@ a:hover {
     font-size: 13px;
     font-weight: 700;
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    height: 32px;
 }
 
 .menu-toggle, .search-toggle {
@@ -76,8 +69,21 @@ a:hover {
     border: none;
     color: #fff;
     cursor: pointer;
-    font-size: 20px;
-    padding: 5px;
+    font-size: 24px; /* Slightly larger */
+    padding: 0;
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    height: 45px; /* Fill the header height */
+    width: 45px;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.menu-toggle {
+    margin: 0;
 }
 
 .container {
@@ -98,7 +104,7 @@ a:hover {
 }
 
 .masthead-title {
-    font-family: "UnifrakturMaguntia", serif;
+    font-family: "Bokor", system-ui;
     font-size: 120px;
     letter-spacing: 0;
     line-height: 1;
@@ -144,11 +150,25 @@ a:hover {
 /* Exact Hero Layout: 3 Columns with specific widths */
 .broadsheet-grid {
     display: grid;
-    grid-template-columns: 300px 1fr 300px; /* Fixed side columns, fluid center */
-    gap: 20px;
+    grid-template-columns: 320px 1fr 300px;
+    gap: 30px;
     align-items: start;
-    border-bottom: 1px solid #333;
-    padding-bottom: 30px;
+    margin-top: 40px;
+    border-bottom: none; /* Removed double line */
+    padding-bottom: 20px;
+}
+
+.main-content-column {
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.hero-top-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 30px;
 }
 
 /* Header Top Fixed Styling */
@@ -164,11 +184,26 @@ a:hover {
 
 .header-top {
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
     height: 45px;
-    padding: 0;
     width: 100%;
+    line-height: 1;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-self: start;
+    height: 100%;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-self: end;
+    height: 100%;
 }
 
 .header-center-sticky {
@@ -179,7 +214,9 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    justify-self: center;
     min-width: 300px; /* Ensure space for the logo */
+    height: 100%;
 }
 
 .sticky-branding {
@@ -188,7 +225,7 @@ a:hover {
 }
 
 .sticky-branding .masthead-title {
-    font-family: 'UnifrakturMaguntia', serif;
+    font-family: 'Bokor', system-ui;
     font-size: 22px !important;
     margin: 0 !important;
     line-height: 1 !important;
@@ -212,13 +249,6 @@ a:hover {
     opacity: 1 !important;
     visibility: visible !important;
     display: flex !important;
-}
-
-.header-right {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 15px;
 }
 
 /* Adjust Site Header to prevent content jump and overlap */
@@ -265,7 +295,7 @@ a:hover {
 }
 
 .sticky-logo {
-    font-family: 'UnifrakturMaguntia', serif;
+    font-family: 'Bokor', system-ui;
     font-size: 18px;
     color: #fff;
 }
@@ -469,24 +499,31 @@ a:hover {
     display: grid;
     grid-template-columns: 1fr 1.5fr 1fr;
     gap: 25px;
-    margin: 40px 0;
-    border-top: 1px solid #333;
-    padding-top: 30px;
+    margin: 0 0 40px;
+    border-top: none; /* Removed redundant top border */
+    padding-top: 0;
 }
 
 /* Section Headers */
 .section-header-wp {
     border-top: 1px solid #333;
     border-bottom: 1px solid #333;
-    padding: 10px 0;
+    padding: 12px 0;
     margin: 40px 0 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .section-header-wp h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 18px;
+    font-size: 16px;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.2em;
+    margin: 0;
+    line-height: 1;
+    font-weight: 900;
 }
 
 /* Category Grid Refinement */
