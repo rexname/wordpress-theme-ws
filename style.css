@@ -68,21 +68,14 @@ a:hover {
     background: none;
     border: none;
     color: #fff;
+    font-size: 24px;
     cursor: pointer;
-    font-size: 24px; /* Slightly larger */
-    padding: 0;
-    margin: 0;
-    display: inline-flex;
+    padding: 10px;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
     align-items: center;
     justify-content: center;
-    line-height: 1;
-    height: 45px; /* Fill the header height */
-    width: 45px;
-    -webkit-appearance: none;
-    appearance: none;
-}
-
-.menu-toggle {
     margin: 0;
 }
 
@@ -115,7 +108,7 @@ a:hover {
 
 .site-tagline {
     font-style: italic;
-    color: #888;
+    color: #b0b0b0; /* Increased contrast from #888 */
     font-size: 14px;
     margin-bottom: 20px;
 }
@@ -417,14 +410,17 @@ a:hover {
 }
 
 /* Opinion Sidebar */
-.column-title {
+.right-column .column-title {
     font-family: 'Playfair Display', serif;
-    font-size: 20px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
     font-weight: 900;
+    color: #fff;
     border-bottom: 3px solid #fff;
     display: inline-block;
-    margin-bottom: 20px;
     padding-bottom: 5px;
+    margin-bottom: 20px;
 }
 
 /* Articles */
@@ -567,7 +563,7 @@ a:hover {
     margin-bottom: 20px;
 }
 
-.section-header-wp-left h2 {
+.section-header-wp-left .section-title {
     font-family: 'Playfair Display', serif;
     font-size: 14px;
     text-transform: uppercase;
@@ -577,6 +573,7 @@ a:hover {
     border-bottom: 3px solid #fff;
     display: inline-block;
     padding-bottom: 5px;
+    margin: 0;
 }
 
 .top-stories-grid {
@@ -629,7 +626,7 @@ a:hover {
 }
 
 .mts-analysis-item {
-    background: #1a1a1a;
+    background: rgba(26, 26, 26, 0.9);
     padding: 20px;
     border-top: 3px solid #fff;
 }
@@ -710,7 +707,7 @@ a:hover {
 
 /* Video/Multimedia Block */
 .multimedia-block {
-    background: #1a1a1a;
+    background: rgba(26, 26, 26, 0.9);
     padding: 40px 0;
     margin: 60px 0;
 }
@@ -798,6 +795,11 @@ a:hover {
     font-size: 32px;
     cursor: pointer;
     line-height: 1;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .side-menu-search {
@@ -808,7 +810,7 @@ a:hover {
     position: relative;
     display: flex;
     align-items: center;
-    background: #222;
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 4px;
     padding: 5px 15px;
 }
@@ -908,7 +910,7 @@ body.side-menu-active {
 .post-header-centered .entry-meta-top {
     font-family: 'Public Sans', sans-serif;
     font-size: 14px;
-    color: #888;
+    color: #b0b0b0; /* Increased contrast from #888 */
     margin-bottom: 25px;
 }
 
@@ -946,7 +948,7 @@ body.side-menu-active {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: #1a1a1a;
+    background: rgba(26, 26, 26, 0.9);
     padding: 6px 12px;
     border-radius: 4px;
     border: 1px solid #333;
@@ -980,7 +982,7 @@ body.side-menu-active {
     padding: 10px 0;
     font-family: 'Public Sans', sans-serif;
     font-size: 12px;
-    color: #888;
+    color: #b0b0b0; /* Increased contrast from #888 */
     border-bottom: 1px solid #222;
 }
 
@@ -1053,6 +1055,225 @@ body.side-menu-active {
     .actions-right .google-news-badge {
         justify-content: center;
     }
+}
+
+/* Related Stories at Bottom of Single */
+.related-stories-section {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid #333;
+}
+
+.related-stories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.related-story-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.related-story-thumbnail {
+    margin-bottom: 12px;
+}
+
+.related-story-thumbnail img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+}
+
+.related-story-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.related-story-meta {
+    font-family: 'Public Sans', sans-serif;
+    font-size: 12px;
+    color: #888;
+}
+
+@media (max-width: 768px) {
+    .related-stories-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* More From Category Section */
+.more-from-category-section {
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid #222;
+}
+
+.more-from-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.more-from-item {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #222;
+}
+
+.more-from-item:nth-last-child(-n+2) {
+    border-bottom: none;
+}
+
+.more-from-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    line-height: 1.2;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.more-from-excerpt {
+    font-family: 'Public Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #aaa;
+}
+
+@media (max-width: 768px) {
+    .more-from-grid {
+        grid-template-columns: 1fr;
+    }
+    .more-from-item:nth-last-child(2) {
+        border-bottom: 1px solid #222;
+    }
+}
+
+/* Floating Side Controls */
+.floating-side-controls {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 1200px; /* Wider than container-narrow to sit on sides */
+    pointer-events: none;
+    z-index: 1500;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.floating-left, .floating-right {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    pointer-events: auto;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.floating-side-controls.is-visible .floating-left,
+.floating-side-controls.is-visible .floating-right {
+    opacity: 1;
+    visibility: visible;
+}
+
+.float-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.float-btn .label {
+    position: absolute;
+    background: #333;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-family: 'Public Sans', sans-serif;
+    font-weight: 700;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    pointer-events: none;
+}
+
+.floating-left .float-btn .label {
+    left: calc(100% + 10px);
+}
+
+.floating-right .float-btn .label {
+    right: calc(100% + 10px);
+}
+
+.float-btn:hover .label {
+    opacity: 1;
+    visibility: visible;
+}
+
+.floating-left .float-btn:hover .label {
+    left: calc(100% + 15px);
+}
+
+.floating-right .float-btn:hover .label {
+    right: calc(100% + 15px);
+}
+
+.float-btn:hover {
+    background: #222;
+    border-color: #555;
+    transform: translateY(-2px);
+}
+
+.float-btn .icon {
+    font-size: 20px;
+    line-height: 1;
+}
+
+@media (max-width: 1300px) {
+    .floating-side-controls {
+        max-width: 100%;
+        top: auto;
+        bottom: 30px;
+        transform: none;
+        left: 0;
+        padding: 0 20px;
+    }
+    
+    .floating-left {
+        display: none; /* Hide left controls on smaller screens to save space */
+    }
+}
+
+/* No Results Styling */
+.no-results-content {
+    padding: 40px 0;
+    font-family: 'Public Sans', sans-serif;
+    color: #aaa;
+}
+
+.search-form-no-results {
+    margin-top: 30px;
+    max-width: 400px;
 }
 
 .video-card-content {
@@ -1333,9 +1554,14 @@ h1, h2, h3 {
 .pagination-arrow {
     font-size: 28px;
     line-height: 1;
-    color: #888;
+    color: #b0b0b0; /* Increased contrast from #888 */
     text-decoration: none;
     transition: color 0.2s ease;
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .pagination-arrow:hover:not(.disabled) {
@@ -1480,7 +1706,7 @@ h1, h2, h3 {
 .opinion-author-name {
     font-family: 'Public Sans', sans-serif;
     font-size: 11px;
-    color: #888;
+    color: #b0b0b0; /* Increased contrast from #888 */
     text-transform: none;
 }
 

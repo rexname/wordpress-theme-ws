@@ -56,4 +56,27 @@ document.addEventListener('DOMContentLoaded', function() {
     if (overlay) {
         overlay.addEventListener('click', closeMenu);
     }
+
+    // Floating Side Controls Logic
+    const floatingControls = document.querySelector('.floating-side-controls');
+    const backToTopBtn = document.querySelector('.float-back-to-top');
+
+    if (floatingControls) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 500) {
+                floatingControls.classList.add('is-visible');
+            } else {
+                floatingControls.classList.remove('is-visible');
+            }
+        });
+    }
+
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 });

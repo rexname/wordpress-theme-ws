@@ -54,7 +54,7 @@
 
         <!-- Column 3: Opinions Sidebar (Now goes all the way down) -->
         <div class="right-column">
-            <span class="column-title">Opinions</span>
+            <p class="column-title">Opinions</p>
             <?php
             $opinion_query = new WP_Query( array('posts_per_page' => 10, 'offset' => 1) );
             if ( $opinion_query->have_posts() ) : while ( $opinion_query->have_posts() ) : $opinion_query->the_post(); ?>
@@ -116,9 +116,9 @@
         </div>
 
         <!-- Most Read Sidebar -->
-        <div class="most-read-sidebar">
+        <div class="most-read-section">
             <div class="section-header-wp-left">
-                <h2>Most Read</h2>
+                <p class="section-title">Most Read</p>
             </div>
             <div class="most-read-list">
                 <?php
