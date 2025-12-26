@@ -36,7 +36,7 @@ add_action( 'after_setup_theme', 'modern_broadsheet_setup' );
  * Enqueue scripts and styles.
  */
 function modern_broadsheet_scripts() {
-    wp_enqueue_style( 'modern-broadsheet-style', get_stylesheet_uri() );
+    wp_enqueue_style( 'modern-broadsheet-style', get_stylesheet_uri(), array(), time() );
     wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&family=UnifrakturMaguntia&family=Bokor&display=swap', array(), null );
 
     // Enqueue Header Scroll Script
