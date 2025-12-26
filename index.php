@@ -12,7 +12,7 @@
                     $hero_query = new WP_Query( array('posts_per_page' => 1) );
                     if ( $hero_query->have_posts() ) : while ( $hero_query->have_posts() ) : $hero_query->the_post(); ?>
                         <article class="hero-text-only">
-                            <h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
+                            <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
                             <p><?php echo wp_trim_words(get_the_excerpt(), 25); ?></p>
                             <div class="byline">By <?php the_author(); ?></div>
                         </article>
@@ -54,7 +54,7 @@
 
         <!-- Column 3: Opinions Sidebar (Now goes all the way down) -->
         <div class="right-column">
-            <p class="column-title">Opinions</p>
+            <h2 class="column-title">Opinions</h2>
             <?php
             $opinion_query = new WP_Query( array('posts_per_page' => 10, 'offset' => 1) );
             if ( $opinion_query->have_posts() ) : while ( $opinion_query->have_posts() ) : $opinion_query->the_post(); ?>
@@ -72,7 +72,7 @@
     <div class="top-stories-most-read-container">
         <div class="more-top-stories-section">
             <div class="section-header-wp-left">
-                <p class="section-title">More Top Stories</p>
+                <h2 class="section-title">More Top Stories</h2>
             </div>
             <div class="top-stories-grid">
                 <!-- Large Story with Image -->
@@ -118,7 +118,7 @@
         <!-- Most Read Sidebar -->
         <div class="most-read-section">
             <div class="section-header-wp-left">
-                <p class="section-title">Most Read</p>
+                <h2 class="section-title">Most Read</h2>
             </div>
             <div class="most-read-list">
                 <?php

@@ -93,10 +93,10 @@
                         </span>
                     </div>
                     <div class="actions-right">
-                        <div class="google-news-badge">
+                        <a href="https://www.google.com/preferences/source?q=<?php echo parse_url(home_url(), PHP_URL_HOST); ?>" target="_blank" class="google-news-badge" style="text-decoration: none; display: flex; align-items: center; gap: 8px;">
                             <img src="https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg" alt="Google" width="50">
                             <span>Make us preferred on Google</span>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </header>
