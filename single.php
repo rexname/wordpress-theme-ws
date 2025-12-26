@@ -2,6 +2,33 @@
 
 <main id="primary" class="site-main">
     <?php while ( have_posts() ) : the_post(); ?>
+        <!-- Schema.org NewsArticle -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "NewsArticle",
+            "headline": "<?php echo esc_attr( get_the_title() ); ?>",
+            "image": [
+                "<?php echo esc_url( get_the_post_thumbnail_url( get_the_ID(), 'full' ) ); ?>"
+            ],
+            "datePublished": "<?php echo get_the_date('c'); ?>",
+            "dateModified": "<?php echo get_the_modified_date('c'); ?>",
+            "author": [{
+                "@type": "Person",
+                "name": "<?php echo esc_attr( get_the_author() ); ?>",
+                "url": "<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>"
+            }],
+            "publisher": {
+                "@type": "Organization",
+                "name": "<?php bloginfo( 'name' ); ?>",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "<?php echo esc_url( get_site_icon_url() ); ?>"
+                }
+            },
+            "description": "<?php echo esc_attr( wp_strip_all_tags( get_the_excerpt() ) ); ?>"
+        }
+        </script>
         <div class="floating-side-controls">
             <div class="floating-left">
                 <button class="float-btn float-back-home" onclick="window.location.href='<?php echo esc_url(home_url('/')); ?>'">
@@ -28,6 +55,22 @@
         <article id="post-<?php the_ID(); ?>" <?php post_class('single-post-article'); ?>>
             
             <header class="post-header-centered container-narrow">
+                <div class="entry-breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="<?php echo esc_url( home_url( '/' ) ); ?>"><span itemprop="name">Home</span></a>
+                        <meta itemprop="position" content="1" />
+                    </span>
+                    <?php
+                    $categories = get_the_category();
+                    if ( ! empty( $categories ) ) {
+                        echo ' &rsaquo; ';
+                        echo '<span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">';
+                        echo '<a itemprop="item" href="' . esc_url( get_category_link( $categories[0]->term_id ) ) . '"><span itemprop="name">' . esc_html( $categories[0]->name ) . '</span></a>';
+                        echo '<meta itemprop="position" content="2" />';
+                        echo '</span>';
+                    }
+                    ?>
+                </div>
                 <h1 class="entry-title"><?php the_title(); ?></h1>
                 
                 <div class="entry-excerpt">

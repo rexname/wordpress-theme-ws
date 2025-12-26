@@ -8,6 +8,48 @@
     <?php else : ?>
         <meta name="description" content="<?php bloginfo( 'description' ); ?>">
     <?php endif; ?>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="<?php echo esc_url( ( is_single() || is_page() ) ? get_permalink() : home_url( add_query_arg( array(), $wp->request ) ) ); ?>">
+
+    <!-- Social Meta Tags -->
+    <?php
+    $site_name = get_bloginfo( 'name' );
+    $title = is_front_page() ? get_bloginfo( 'name' ) : wp_title( '', false );
+    $description = ( is_single() || is_page() ) ? wp_strip_all_tags( get_the_excerpt() ) : get_bloginfo( 'description' );
+    $url = ( is_single() || is_page() ) ? get_permalink() : home_url( add_query_arg( array(), $wp->request ) );
+    $image = has_post_thumbnail() ? get_the_post_thumbnail_url( get_the_ID(), 'full' ) : ''; // Fallback image could be added here
+    ?>
+    <meta property="og:site_name" content="<?php echo esc_attr( $site_name ); ?>">
+    <meta property="og:title" content="<?php echo esc_attr( $title ); ?>">
+    <meta property="og:description" content="<?php echo esc_attr( $description ); ?>">
+    <meta property="og:url" content="<?php echo esc_url( $url ); ?>">
+    <meta property="og:type" content="<?php echo is_single() ? 'article' : 'website'; ?>">
+    <?php if ( $image ) : ?>
+    <meta property="og:image" content="<?php echo esc_url( $image ); ?>">
+    <?php endif; ?>
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?php echo esc_attr( $title ); ?>">
+    <meta name="twitter:description" content="<?php echo esc_attr( $description ); ?>">
+    <?php if ( $image ) : ?>
+    <meta name="twitter:image" content="<?php echo esc_url( $image ); ?>">
+    <?php endif; ?>
+
+    <!-- Schema.org WebSite -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "<?php bloginfo( 'name' ); ?>",
+        "url": "<?php echo esc_url( home_url( '/' ) ); ?>",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "<?php echo esc_url( home_url( '/' ) ); ?>?s={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <?php wp_head(); ?>

@@ -1,18 +1,18 @@
 <footer class="site-footer">
     <div class="container">
-        <!-- Diversions Section -->
+        <!-- Trending Topics Section -->
         <div class="diversions-section">
-            <h2 class="section-title" style="margin-bottom: 20px;">Diversions</h2>
-            <ul class="diversions-list">
-                <li><span style="font-size: 18px;">&#128100;</span> Comics</li>
-                <li><span style="font-size: 18px;">&#129513;</span> Crosswords</li>
-                <li><span style="font-size: 18px;">&#128273;</span> Keyword</li>
-                <li><span style="font-size: 18px;">&#127921;</span> Wridges</li>
-                <li><span style="font-size: 18px;">&#10067;</span> Quiz</li>
-                <li><span style="font-size: 18px;">&#126980;</span> Mah Jongg</li>
-                <li><span style="font-size: 18px;">&#128290;</span> Sudoku</li>
-                <li><span style="font-size: 18px;">&#9800;</span> Horoscopes</li>
-                <li><span style="font-size: 18px;">&#127137;</span> Solitaire</li>
+            <h2 class="section-title" style="margin-bottom: 20px;">Trending Topics</h2>
+            <ul class="diversions-list trending-topics-list">
+                <li><a href="<?php echo esc_url( home_url( '/?s=Elections' ) ); ?>"><span class="trending-icon">#</span> Elections</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/?s=Technology' ) ); ?>"><span class="trending-icon">#</span> Technology</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/?s=Climate' ) ); ?>"><span class="trending-icon">#</span> Climate</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/?s=Economy' ) ); ?>"><span class="trending-icon">#</span> Economy</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/?s=Health' ) ); ?>"><span class="trending-icon">#</span> Health</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/?s=World+News' ) ); ?>"><span class="trending-icon">#</span> World News</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/?s=Sports' ) ); ?>"><span class="trending-icon">#</span> Sports</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/?s=Entertainment' ) ); ?>"><span class="trending-icon">#</span> Entertainment</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/?s=Science' ) ); ?>"><span class="trending-icon">#</span> Science</a></li>
             </ul>
         </div>
 
@@ -73,8 +73,8 @@
                     <ul>
                         <li><a href="#">Digital Products Terms of Sale</a></li>
                         <li><a href="#">Print Products Terms of Sale</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/terms-of-service/' ) ); ?>">Terms of Service</a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>">Privacy Policy</a></li>
                         <li><a href="#">Cookie Settings</a></li>
                         <li><a href="#">Submissions & Discussion Policy</a></li>
                     </ul>

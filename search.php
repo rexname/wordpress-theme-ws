@@ -1,6 +1,38 @@
 <?php get_header(); ?>
 
 <main id="primary" class="site-main container archive-container">
+    <!-- Schema.org SearchResultsPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SearchResultsPage",
+        "name": "<?php printf( esc_html__( 'Search Results for: %s', 'modern-broadsheet' ), get_search_query() ); ?>",
+        "url": "<?php echo esc_url( home_url( $wp->request ) ); ?>",
+        "mainEntity": {
+            "@type": "ItemList",
+            "itemListElement": [
+                <?php
+                $i = 1;
+                if ( have_posts() ) :
+                    while ( have_posts() ) : the_post();
+                        if ($i > 1) echo ',';
+                        ?>
+                        {
+                            "@type": "ListItem",
+                            "position": <?php echo $i; ?>,
+                            "url": "<?php the_permalink(); ?>",
+                            "name": "<?php echo esc_attr( get_the_title() ); ?>"
+                        }
+                        <?php
+                        $i++;
+                    endwhile;
+                    rewind_posts();
+                endif;
+                ?>
+            ]
+        }
+    }
+    </script>
     <header class="archive-header">
         <div class="archive-breadcrumbs">
             <span>Search Results</span>
@@ -78,9 +110,6 @@
             <?php else : ?>
                 <div class="no-results-content">
                     <p><?php _e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'modern-broadsheet' ); ?></p>
-                    <div class="search-form-no-results">
-                        <?php get_search_form(); ?>
-                    </div>
                 </div>
             <?php endif; ?>
         </div>

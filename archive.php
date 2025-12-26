@@ -1,19 +1,72 @@
 <?php get_header(); ?>
 
 <main id="primary" class="site-main container archive-container">
+    <!-- Schema.org CollectionPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "<?php echo esc_attr( get_the_archive_title() ); ?>",
+        "description": "<?php echo esc_attr( get_the_archive_description() ); ?>",
+        "url": "<?php echo esc_url( home_url( $wp->request ) ); ?>",
+        "mainEntity": {
+            "@type": "ItemList",
+            "itemListElement": [
+                <?php
+                $i = 1;
+                if ( have_posts() ) :
+                    while ( have_posts() ) : the_post();
+                        if ($i > 1) echo ',';
+                        ?>
+                        {
+                            "@type": "ListItem",
+                            "position": <?php echo $i; ?>,
+                            "url": "<?php the_permalink(); ?>",
+                            "name": "<?php echo esc_attr( get_the_title() ); ?>"
+                        }
+                        <?php
+                        $i++;
+                    endwhile;
+                    rewind_posts();
+                endif;
+                ?>
+            ]
+        }
+    }
+    </script>
     <header class="archive-header">
-        <div class="archive-breadcrumbs">
+        <div class="archive-breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
             <?php
             if (is_category()) {
                 $cat = get_queried_object();
+                echo '<span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">';
+                echo '<a itemprop="item" href="' . esc_url( home_url( '/' ) ) . '"><span itemprop="name">Home</span></a>';
+                echo '<meta itemprop="position" content="1" />';
+                echo '</span> &rsaquo; ';
+                
                 if ($cat->parent) {
                     $parent = get_category($cat->parent);
-                    echo '<a href="' . get_category_link($parent->term_id) . '">' . $parent->name . '</a>';
+                    echo '<span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">';
+                    echo '<a itemprop="item" href="' . get_category_link($parent->term_id) . '"><span itemprop="name">' . $parent->name . '</span></a>';
+                    echo '<meta itemprop="position" content="2" />';
+                    echo '</span> &rsaquo; ';
+                    $pos = 3;
                 } else {
-                    echo '<span>Business</span>'; // Using "Business" as shown in the reference image
+                    echo '<span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">';
+                    echo '<span itemprop="name">Business</span>'; // Using "Business" as shown in the reference image
+                    echo '<meta itemprop="position" content="2" />';
+                    echo '</span>';
+                    $pos = 3;
                 }
             } else {
-                echo '<span>News</span>';
+                echo '<span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">';
+                echo '<a itemprop="item" href="' . esc_url( home_url( '/' ) ) . '"><span itemprop="name">Home</span></a>';
+                echo '<meta itemprop="position" content="1" />';
+                echo '</span> &rsaquo; ';
+                echo '<span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">';
+                echo '<span itemprop="name">News</span>';
+                echo '<meta itemprop="position" content="2" />';
+                echo '</span>';
             }
             ?>
         </div>

@@ -79,4 +79,22 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    // Prevent floating controls from entering footer
+    const footer = document.querySelector('.site-footer');
+    if (floatingControls && footer) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    floatingControls.classList.add('hide-for-footer');
+                } else {
+                    floatingControls.classList.remove('hide-for-footer');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        observer.observe(footer);
+    }
 });
